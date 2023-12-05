@@ -1,6 +1,6 @@
 package com.hideaway.model;
 
-import org.springframework.cglib.core.Local;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +28,7 @@ public class Rating {
 	    @Column(name = "rating")
 	    private double rating;
 	    
-	    private Local createdAt;
+	    private LocalDateTime createdAt;
 
 	    public Rating() {
 			// TODO Auto-generated constructor stub
