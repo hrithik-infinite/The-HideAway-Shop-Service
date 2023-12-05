@@ -30,10 +30,11 @@ public class AuthController {
     private CustomUserDetails customUserService;
 
     public AuthController(UserRepository userRepository, CustomUserDetails customUserService,
-            PasswordEncoder passwordEncoder) {
+            PasswordEncoder passwordEncoder, JwtProvider jwtProvider) {
         this.userRepository = userRepository;
         this.customUserService = customUserService;
         this.passwordEncoder = passwordEncoder;
+        this.jwtProvider = jwtProvider;
     }
 
     @PostMapping("/signup")
@@ -44,7 +45,6 @@ public class AuthController {
         String lastName = user.getLastName();
 
         User isEmailExist = userRepository.findByEmail(email);
-
         if (isEmailExist != null) {
 
             throw new UserException("Email Is Already Used With Another Account");
