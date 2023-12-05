@@ -17,7 +17,16 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtProvider {
-	private SecretKey key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+	private SecretKey key;
+	 public JwtProvider() {
+	        try {
+	            this.key = Keys.hmacShaKeyFor(JwtConstant.SECRET_KEY.getBytes());
+	        } catch (Exception e) {
+	            // Log the exception or print the stack trace
+	            e.printStackTrace();
+	            throw new RuntimeException("Error initializing JwtProvider", e);
+	        }
+	    }
 
 	public String generateToken(Authentication auth) {
 		String jwt = Jwts.builder()
