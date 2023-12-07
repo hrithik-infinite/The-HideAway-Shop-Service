@@ -1,6 +1,7 @@
 package com.hideaway.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -70,7 +71,7 @@ public class Product {
     @JoinColumn(name="category_id")
     private Category category;
     
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
     
 	public Product() {
 		
@@ -78,7 +79,7 @@ public class Product {
 
 	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent,
 			int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings,
-			List<Review> reviews, int numRatings, Category category, LocalDate createdAt) {
+			List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -218,11 +219,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public LocalDate getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 	
