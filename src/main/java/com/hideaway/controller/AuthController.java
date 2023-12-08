@@ -20,19 +20,23 @@ import com.hideaway.model.User;
 import com.hideaway.repository.UserRepository;
 import com.hideaway.request.LoginRequest;
 import com.hideaway.response.AuthResponse;
+import com.hideaway.service.CartService;
 import com.hideaway.service.CustomUserDetails;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-	@Autowired
+    @Autowired
     private UserRepository userRepository;
-	@Autowired
+    @Autowired
     private JwtProvider jwtProvider;
-	@Autowired
+    @Autowired
     private PasswordEncoder passwordEncoder;
-	@Autowired
+    @Autowired
     private CustomUserDetails customUserService;
+
+    @Autowired
+    private CartService cartService;
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user) throws UserException {
@@ -53,6 +57,7 @@ public class AuthController {
         createdUser.setPassword(passwordEncoder.encode(password));
 
         User savedUser = userRepository.save(createdUser);
+        cartService.createCart(savedUser);
         Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
