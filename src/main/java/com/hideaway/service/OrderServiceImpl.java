@@ -3,6 +3,7 @@ package com.hideaway.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hideaway.exception.OrderException;
 import com.hideaway.model.Address;
@@ -11,6 +12,7 @@ import com.hideaway.model.User;
 import com.hideaway.repository.CartRepository;
 import com.hideaway.repository.UserRepository;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
 	@Autowired
