@@ -34,13 +34,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product createProduct(CreateProductRequest req) {
         Category topLevel = categoryRepository.findByName(req.getTopLevelCategory());
-        if (topLevel != null) {
+        if (topLevel == null) {
             Category topLevelCategory = new Category();
             topLevelCategory.setName(req.getTopLevelCategory());
             topLevelCategory.setLevel(1);
             topLevel = categoryRepository.save(topLevelCategory);
         }
-        Category secondLevel = categoryRepository.findByNameAndParant(req.getSecondLevelCategory(), topLevel.getName());
+        Category secondLevel = categoryRepository.findByNameAndParent(req.getSecondLevelCategory(), topLevel.getName());
         if (secondLevel == null) {
 
             Category secondLavelCategory = new Category();
@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
             secondLevel = categoryRepository.save(secondLavelCategory);
         }
 
-        Category thirdLevel = categoryRepository.findByNameAndParant(req.getThirdLevelCategory(),
+        Category thirdLevel = categoryRepository.findByNameAndParent(req.getThirdLevelCategory(),
                 secondLevel.getName());
         if (thirdLevel == null) {
 
@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
         product.setColor(req.getColor());
         product.setDescription(req.getDescription());
         product.setDiscountedPrice(req.getDiscountedPrice());
-        product.setDiscountPersent(req.getDiscountPercent());
+        product.setDiscountPercent(req.getDiscountPercent());
         product.setImageUrl(req.getImageUrl());
         product.setBrand(req.getBrand());
         product.setPrice(req.getPrice());
@@ -155,5 +155,16 @@ public class ProductServiceImpl implements ProductService {
         Page<Product> filteredProducts = new PageImpl<>(pageContent, pageable, products.size());
         return filteredProducts; // If color list is empty, do nothing and return all products
     }
+
+	@Override
+	public List<Product> searchProduct(String q) {
+		List<Product> products = productRepository.searchProduct(q);
+		return products;
+	}
+
+	@Override
+	public List<Product> getAllProducts() {
+		return productRepository.findAll();
+	}
 
 }
