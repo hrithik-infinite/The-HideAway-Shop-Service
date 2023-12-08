@@ -37,8 +37,8 @@ public class Product {
     @Column(name = "discounted_price")
     private int discountedPrice;
     
-    @Column(name="discount_persent")
-    private int discountPersent;
+    @Column(name="discount_Percent")
+    private int discountPercent;
 
     @Column(name = "quantity")
     private int quantity;
@@ -77,7 +77,7 @@ public class Product {
 		
 	}
 
-	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPersent,
+	public Product(Long id, String title, String description, int price, int discountedPrice, int discountPercent,
 			int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings,
 			List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
 		super();
@@ -86,7 +86,7 @@ public class Product {
 		this.description = description;
 		this.price = price;
 		this.discountedPrice = discountedPrice;
-		this.discountPersent = discountPersent;
+		this.discountPercent = discountPercent;
 		this.quantity = quantity;
 		this.brand = brand;
 		this.color = color;
@@ -139,12 +139,12 @@ public class Product {
 		this.discountedPrice = discountedPrice;
 	}
 
-	public int getDiscountPersent() {
-		return discountPersent;
+	public int getDiscountPercent() {
+		return discountPercent;
 	}
 
-	public void setDiscountPersent(int discountPersent) {
-		this.discountPersent = discountPersent;
+	public void setDiscountPercent(int discountPercent) {
+		this.discountPercent = discountPercent;
 	}
 
 	public int getQuantity() {
