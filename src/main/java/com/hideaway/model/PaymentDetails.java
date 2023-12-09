@@ -1,9 +1,11 @@
 package com.hideaway.model;
 
+import com.hideaway.user.domain.PaymentStatus;
+
 public class PaymentDetails {
 
 	private String paymentMethod;
-	private String status;
+	private PaymentStatus status;
 	private String paymentId;
 	private String razorpayPaymentLinkId;
 	private String razorpayPaymentLinkReferenceId;
@@ -22,12 +24,12 @@ public class PaymentDetails {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public String getStatus() {
+	public PaymentStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setStatus(PaymentStatus pending) {
+		this.status = pending;
 	}
 
 	public String getPaymentId() {
