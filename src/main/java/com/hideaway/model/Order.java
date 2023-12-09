@@ -4,10 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hideaway.user.domain.OrderStatus;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,7 +49,9 @@ public class Order {
 
 	private Integer discount;
 
-	private String orderStatus;
+	@Enumerated(EnumType.STRING)
+private OrderStatus orderStatus;
+
 
 	private int totalItem;
 
@@ -57,7 +63,7 @@ public class Order {
 
 	public Order(Long id, String orderId, User user, List<OrderItem> orderItems, LocalDateTime orderDate,
 			LocalDateTime deliveryDate, Address shippingAddress, PaymentDetails paymentDetails, double totalPrice,
-			Integer totalDiscountedPrice, Integer discount, String orderStatus, int totalItem,
+			Integer totalDiscountedPrice, Integer discount, OrderStatus orderStatus, int totalItem,
 			LocalDateTime createdAt) {
 		super();
 		this.id = id;
@@ -164,12 +170,12 @@ public class Order {
 		this.discount = discount;
 	}
 
-	public String getOrderStatus() {
+	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setOrderStatus(OrderStatus pending) {
+		this.orderStatus = pending;
 	}
 
 	public int getTotalItem() {
